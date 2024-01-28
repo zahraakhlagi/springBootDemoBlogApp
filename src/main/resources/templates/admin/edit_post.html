@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<div th:replace="admin/header :: header"></div>
+<body>
+<div th:replace="admin/header :: navbar"></div>
+<br /><br />
+<div class="container">
+                <h2 class="text-center"> Edit Post</h2>
+
+                <form role="form" method="post" th:action="@{/admin/posts/{postId}(postId=${post.id})}" th:object="${post}">
+                    <input type="hidden" th:field="*{url}">
+                    <input type="hidden" th:field="*{createdOn}">
+                    <div class="mb-3">
+                        <label class="form-label"> Title </label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="title"
+                                placeholder="Enter post title"
+                                name="title"
+                                th:field="*{title}"
+                        />
+                        <p th:if="${#fields.hasErrors('title')}" class="text-danger"
+                           th:errors="*{title}"></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Short Description</label>
+                        <textarea
+                                class="form-control"
+                                id="shortDescription"
+                                placeholder="Enter post short description"
+                                rows="3"
+                                name="shortDescription"
+                                th:field="*{shortDescription}"
+                        >
+
+                        </textarea>
+                        <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"
+                           th:errors="*{shortDescription}"></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Content</label>
+                        <textarea
+                                class="form-control"
+                                id="content"
+                                placeholder="Enter post content"
+                                rows="12"
+                                name="content"
+                                th:field="*{content}"
+                        >
+                        </textarea>
+                        <p th:if="${#fields.hasErrors('content')}" class="text-danger"
+                           th:errors="*{content}"></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot Thymeleaf Blog App</title>
+    <link crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Spring Boot Thymeleaf Blog App</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" th:href="@{/}" >All Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" th:href="@{/register}" >Register</a>
+                </li>
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" th:href="@{/login}" >Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div th:if="${param.error}">
+    <h3 class="alert alert-danger">Invalid email or password.</h3>
+</div>
+<div th:if="${param.logout}">
+    <h3 class="alert alert-success">you have been logged out.</h3>
+</div>
+
+<h2>Login form</h2>
+<form method="post"
+th:action="@{/login}"
+role="form">
+
+    <label for="username">Email *</label>
+    <input type="text"
+           id="username"
+           name="username"
+           class="form-control"
+           placeholder="Email"/><br/>
+
+    <label for="password">Password *</label>
+    <input type="password"
+           id="password"
+           name="password"
+           class="form-control"
+           placeholder="Password"
+    /><br/>
+        <button type="submit" class="btn btn-primary">Login</button><br/>
+        <span> Not registered?
+            <a th:href="@{/register}"> Register/SignUp Here</a>
+        </span>
+</form>
+
+</body>
+</html>
